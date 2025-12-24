@@ -6,9 +6,13 @@ import Counter3 from './components/Counter3'
 const App = () => {
   return (
     <>
-      <Counter1/>
-      <Counter2/>
-      <Counter3/>
+      <div className="min-h-screen bg-linear-to-br from-gray-100 to-gray-300 
+                    flex flex-col md:flex-row items-center justify-center 
+                    gap-8 p-6">
+        <Counter1 />
+        <Counter2 />
+        <Counter3 />
+      </div>
     </>
   )
 }
