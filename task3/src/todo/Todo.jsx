@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { add_task, delete_task } from './todoSlice';
+import { add_task, delete_task, edit_task } from './todoSlice';
 
 const Todo = () => {
 
   const [text, setText] = useState("");
   const tasks = useSelector(state => state.todo.value);
+
+  const [editText, setEditText] = useState("");
+  const [editIndex, setEditIndex] = useState(null);
+
   const dispatch = useDispatch();
 
   const handleAddBtn = () => {
@@ -14,6 +18,17 @@ const Todo = () => {
       setText("");
     }
   };
+
+  const handleEdit = (index, task) => {
+    setEditIndex(index);
+    setEditText(task);
+  }
+
+  const handleEditSave = () => {
+    dispatch(edit_task({ index: editIndex, text: editText }));
+    setEditIndex(null);
+    setEditText('');
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -52,13 +67,30 @@ const Todo = () => {
               className="flex items-center justify-between bg-gray-100
                          px-4 py-2 rounded-lg hover:bg-gray-200 transition"
             >
-              <span className="text-gray-800">{task}</span>
-              <button
-                onClick={() => dispatch(delete_task(index))}
-                className="text-red-500 hover:text-red-700 font-medium"
-              >
-                Delete
-              </button>
+              {editIndex === index ? (
+                <>
+                  <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} className='flex-1 border px-2 py-1 rounded' />
+                  <button onClick={handleEditSave} className='ml-2 text-green-700'>Save</button>
+                </>
+              ) : (
+                <>
+                  <span className="text-gray-800">{task}</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleEdit(index, task)}
+                      className="text-blue-600"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => dispatch(delete_task(index))}
+                      className="text-red-600"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
