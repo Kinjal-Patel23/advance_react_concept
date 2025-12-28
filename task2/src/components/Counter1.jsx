@@ -13,7 +13,7 @@ const Counter1 = () => {
 
   return (
     <>
-      <div className="w-64 p-6 rounded-2xl bg-linear-to-br from-blue-800 to-green-600 text-center shadow-xl">
+      <div className="w-64 p-6 rounded-2xl bg-linear-to-br from-blue-700 to-green-600 text-center shadow-xl">
   
   <h1 className="text-5xl font-bold text-white mb-6">
     {count}
