@@ -1,98 +1,97 @@
-import { useFormik } from 'formik'
-import { useState } from 'react';
-import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useState } from "react";
+import StepOne from "./components/StepOne";
+import StepTwo from "./components/StepTwo";
+import StepThree from "./components/StepThree";
+import { getValidationSchema } from "./validation";
 
 const App = () => {
-
-  const [submitData, setSubmitData] = useState(null);
+  const [step, setStep] = useState(1);
 
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
+      degree: "",
+      college: "",
     },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .required("Name is required"),
-
-      email: Yup.string()
-        .email("Invalid email format")
-        .required("Email is required"),
-    }),
-
-    onSubmit: (values, { resetForm }) => {
-      setSubmitData(values);
-      resetForm();
+    validationSchema: getValidationSchema(step),
+    onSubmit: (values) => {
+      console.log("Final Data:", values);
+      alert("Form Submitted");
     },
-  })
+  });
+
+  const handleNext = async () => {
+    const errors = await formik.validateForm();
+
+    if (step === 1) {
+      formik.setTouched({
+        name: true,
+        email: true,
+      });
+
+      if (!errors.name && !errors.email) {
+        setStep(2);
+      }
+    }
+
+    if (step === 2) {
+      formik.setTouched({
+        degree: true,
+        college: true,
+      });
+
+      if (!errors.degree && !errors.college) {
+        setStep(3);
+      }
+    }
+  };
 
   return (
-    <>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-center mb-6">
-            Formik Form
-          </h2>
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="w-full max-w-md bg-white p-6 rounded shadow">
+        <form onSubmit={formik.handleSubmit} className="space-y-4">
 
-          <form onSubmit={formik.handleSubmit} className="space-y-4">
-            <div>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter name..."
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.name}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+          {step === 1 && <StepOne formik={formik} />}
+          {step === 2 && <StepTwo formik={formik} />}
+          {step === 3 && <StepThree values={formik.values} />}
 
-              {formik.touched.name && formik.errors.name && (
-                <p className="text-red-500 text-sm mt-1">
-                  {formik.errors.name}
-                </p>
-              )}
-            </div>
-            <div>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter email..."
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+          <div className="flex gap-2 mt-4">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={() => setStep(step - 1)}
+                className="w-1/2 bg-gray-400 text-white p-2"
+              >
+                Back
+              </button>
+            )}
 
-              {formik.touched.email && formik.errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {formik.errors.email}
-                </p>
-              )}
-            </div>
+            {step < 3 && (
+              <button
+                type="button"
+                onClick={handleNext}
+                className="w-1/2 bg-blue-600 text-white p-2"
+              >
+                Next
+              </button>
+            )}
 
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-            >
-              Submit
-            </button>
-          </form>
-          {submitData && (
-            <div className="mt-6 border-t pt-4">
-              <h3 className="text-lg font-medium mb-2">Form Data</h3>
-              <p>
-                <span className="font-semibold">Name:</span> {submitData.name}
-              </p>
-              <p>
-                <span className="font-semibold">Email:</span> {submitData.email}
-              </p>
-            </div>
-          )}
-        </div>
+            {step === 3 && (
+              <button
+                type="submit"
+                className="w-full bg-green-600 text-white p-2"
+              >
+                Submit
+              </button>
+            )}
+          </div>
+
+        </form>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
