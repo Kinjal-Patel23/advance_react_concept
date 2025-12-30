@@ -1,13 +1,13 @@
-import Todo from './components/Todo'
-import Form from './components/Form'
+import Todo from "./components/Todo";
+import Form from "./components/Form";
 
 const App = () => {
   return (
     <>
-      <Todo/>
-      <Form/>
+      <Todo />
+      <Form />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

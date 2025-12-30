@@ -1,26 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { test, expect, vi } from "vitest"
+import { test, expect, vi } from "vitest";
 import Form from "./Form";
 
 test("submit function", async () => {
-    const handleSubmit = vi.fn();
+  const handleSubmit = vi.fn();
 
-    render(<Form onSubmit={handleSubmit} />);
+  render(<Form onSubmit={handleSubmit} />);
 
-    const button = screen.getByText("Submit");
+  const button = screen.getByText("Submit");
 
-    await userEvent.click(button);
+  await userEvent.click(button);
 
-    expect(handleSubmit).toHaveBeenCalled();
-})
+  expect(handleSubmit).toHaveBeenCalled();
+});
 
 test("password input", async () => {
-    render(<Form onSubmit={() => {}}/>);
+  render(<Form onSubmit={() => {}} />);
 
-    const passwordInput = screen.getByPlaceholderText("Password");
+  const passwordInput = screen.getByPlaceholderText("Password");
 
-    await userEvent.type(passwordInput, "987654");
+  await userEvent.type(passwordInput, "987654");
 
-    expect(passwordInput).toHaveValue("987654");
-})
+  expect(passwordInput).toHaveValue("987654");
+});

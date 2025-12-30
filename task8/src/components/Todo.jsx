@@ -1,8 +1,7 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 const Todo = () => {
-
   const [text, setText] = useState("");
   const [todo, setTodo] = useState([]);
 
@@ -51,18 +50,20 @@ const Todo = () => {
                 <span className="text-gray-700">{t}</span>
 
                 <div className="flex gap-3">
-                  <span className="cursor-pointer"><FaEdit /></span>
+                  <span className="cursor-pointer">
+                    <FaEdit />
+                  </span>
 
-                  <button onClick={() => handleDelete(i)}><FaTrash /></button>
+                  <button onClick={() => handleDelete(i)}>
+                    <FaTrash />
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
 
           {todo.length === 0 && (
-            <p className="text-center text-gray-400 mt-4">
-              No tasks added yet
-            </p>
+            <p className="text-center text-gray-400 mt-4">No tasks added yet</p>
           )}
         </div>
       </div>
