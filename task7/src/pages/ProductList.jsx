@@ -14,10 +14,10 @@ const ProductList = () => {
         const data = await response.json();
         setProducts(data.products);
       } catch (err) {
-        console.log(err)
+        console.log(err);
         setError("Failed to load products");
       } finally {
-        setLoading(false);  
+        setLoading(false);
       }
     };
 

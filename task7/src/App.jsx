@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -23,7 +23,13 @@ const App = () => {
             path="/products/:id"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<div className="text-white text-center mt-20">Loading...</div>}>
+                <Suspense
+                  fallback={
+                    <div className="text-white text-center mt-20">
+                      Loading...
+                    </div>
+                  }
+                >
                   <ProductDetails />
                 </Suspense>
               </ProtectedRoute>
