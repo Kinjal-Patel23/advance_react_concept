@@ -4,9 +4,7 @@ export const getValidationSchema = (step) => {
   if (step === 1) {
     return Yup.object({
       name: Yup.string().required("Name is required"),
-      email: Yup.string()
-        .email("Invalid email")
-        .required("Email is required"),
+      email: Yup.string().email("Invalid email").required("Email is required"),
     });
   }
 

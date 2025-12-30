@@ -52,7 +52,6 @@ const App = () => {
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded shadow">
         <form onSubmit={formik.handleSubmit} className="space-y-4">
-
           {step === 1 && <StepOne formik={formik} />}
           {step === 2 && <StepTwo formik={formik} />}
           {step === 3 && <StepThree values={formik.values} />}
@@ -87,7 +86,6 @@ const App = () => {
               </button>
             )}
           </div>
-
         </form>
       </div>
     </div>
