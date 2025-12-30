@@ -1,26 +1,20 @@
-import React from 'react'
-import useCounter from '../useCounter'
+import useCounter from "../useCounter";
 
 const Counter1 = () => {
-
-  const { count, increment, decrement, reset } = useCounter(20)
+  const { count, increment, decrement, reset } = useCounter(20);
 
   const handleIncrement = () => {
     if (count < 50) {
       increment();
     }
-  }
+  };
 
   return (
     <>
       <div className="w-64 p-6 rounded-2xl bg-linear-to-br from-blue-700 to-green-600 text-center shadow-xl">
-
-        <h1 className="text-5xl font-bold text-white mb-6">
-          {count}
-        </h1>
+        <h1 className="text-5xl font-bold text-white mb-6">{count}</h1>
 
         <div className="flex gap-3">
-
           <button
             onClick={decrement}
             className="flex-1 py-2 rounded-xl bg-red-500 text-white text-xl font-bold
@@ -44,13 +38,10 @@ const Counter1 = () => {
           >
             +
           </button>
-
         </div>
       </div>
-
-
     </>
-  )
-}
+  );
+};
 
-export default Counter1
+export default Counter1;
