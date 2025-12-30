@@ -1,14 +1,11 @@
-import React from 'react'
-import Todo from './todo/Todo'
-// import Counter from './features/counter/Counter'
+import Todo from "./todo/Todo";
 
 const App = () => {
   return (
     <>
-      {/* <Counter/> */}
-      <Todo/>
+      <Todo />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

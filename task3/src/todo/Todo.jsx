@@ -1,11 +1,10 @@
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { add_task, delete_task, edit_task } from './todoSlice';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add_task, delete_task, edit_task } from "./todoSlice";
 
 const Todo = () => {
-
   const [text, setText] = useState("");
-  const tasks = useSelector(state => state.todo.value);
+  const tasks = useSelector((state) => state.todo.value);
 
   const [editText, setEditText] = useState("");
   const [editIndex, setEditIndex] = useState(null);
@@ -22,13 +21,13 @@ const Todo = () => {
   const handleEdit = (index, task) => {
     setEditIndex(index);
     setEditText(task);
-  }
+  };
 
   const handleEditSave = () => {
     dispatch(edit_task({ index: editIndex, text: editText }));
     setEditIndex(null);
-    setEditText('');
-  }
+    setEditText("");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -56,9 +55,7 @@ const Todo = () => {
 
         <div className="space-y-3">
           {tasks.length === 0 && (
-            <p className="text-center text-gray-400">
-              No tasks yet
-            </p>
+            <p className="text-center text-gray-400">No tasks yet</p>
           )}
 
           {tasks.map((task, index) => (
@@ -69,8 +66,18 @@ const Todo = () => {
             >
               {editIndex === index ? (
                 <>
-                  <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} className='flex-1 border px-2 py-1 rounded' />
-                  <button onClick={handleEditSave} className='ml-2 text-green-700'>Save</button>
+                  <input
+                    type="text"
+                    value={editText}
+                    onChange={(e) => setEditText(e.target.value)}
+                    className="flex-1 border px-2 py-1 rounded"
+                  />
+                  <button
+                    onClick={handleEditSave}
+                    className="ml-2 text-green-700"
+                  >
+                    Save
+                  </button>
                 </>
               ) : (
                 <>
@@ -94,7 +101,6 @@ const Todo = () => {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );
