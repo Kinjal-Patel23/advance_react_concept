@@ -1,6 +1,6 @@
 const StepThree = ({ values }) => {
   return (
-    <div className="bg-gray-100 p-4 rounded">
+    <div className='bg-gray-100 p-4 rounded'>
       <p>
         <b>Name:</b> {values.name}
       </p>
@@ -14,7 +14,7 @@ const StepThree = ({ values }) => {
         <b>College:</b> {values.college}
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default StepThree;
+export default StepThree
