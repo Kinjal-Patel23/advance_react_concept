@@ -1,14 +1,14 @@
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom'
 
 // fake auth
-const isLoggedIn = false;
+const isLoggedIn = false
 
 const ProtectedRoute = ({ children }) => {
   if (!isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to='/' />
   }
 
-  return children;
-};
+  return children
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute
