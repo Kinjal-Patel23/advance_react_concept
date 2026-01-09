@@ -1,15 +1,15 @@
-import ProductList from "./pages/ProductList";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Products from './pages/Products'
 
 const App = () => {
   return (
-    <>
+    <div>
       <Navbar />
-      <ProductList />
+      <Products />
       <Footer />
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default App;
+export default App
